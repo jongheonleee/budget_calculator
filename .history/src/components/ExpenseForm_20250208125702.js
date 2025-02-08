@@ -34,8 +34,7 @@ export class ExpenseForm extends Component {
             </div>
 
             <button tpye='submit' className='btn'>
-                제출 
-                <MdSend className='btn-icon'/>
+                <MdSend />
             </button>
         </form>
     )

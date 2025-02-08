@@ -13,14 +13,7 @@ export class ExpenseList extends Component {
       <>
         <ul className='list'>
             {/* Expense Item */}
-            {this.props.initialExpenses.map(expense => {
-                return (
-                  <ExpenseItem 
-                    expense={expense} 
-                    key={expense.id}
-                  />
-                )
-            })}
+            <ExpenseItem />
         </ul>
         <button className='btn'>
             목록 지우기 

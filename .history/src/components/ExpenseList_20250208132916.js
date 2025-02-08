@@ -15,10 +15,7 @@ export class ExpenseList extends Component {
             {/* Expense Item */}
             {this.props.initialExpenses.map(expense => {
                 return (
-                  <ExpenseItem 
-                    expense={expense} 
-                    key={expense.id}
-                  />
+                  <ExpenseItem expense={expense} />
                 )
             })}
         </ul>

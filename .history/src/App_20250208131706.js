@@ -23,7 +23,7 @@ class App extends Component {
 
         {/* 리스트 영역 */}
         <div style={{ width:'100%', backgroundColor : 'white', padding: '1rem'}}>
-          <ExpenseList initialExpenses={this.initialExpenses} />
+          <ExpenseList />
         </div>
 
         <div style={{ display : 'flex', justifyContent: 'end', marginTop: '1rem'}}>
