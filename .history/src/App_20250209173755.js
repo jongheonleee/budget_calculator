@@ -19,6 +19,7 @@ class App extends Component {
 
   handleDelete = (id) => {
     const newExpenses = this.state.expenses.filter(expense => expense.id !== id);
+    console.log(newExpenses);
     this.setState({expenses: newExpenses});
   }
 

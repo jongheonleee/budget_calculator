@@ -18,8 +18,8 @@ class App extends Component {
   }
 
   handleDelete = (id) => {
-    const newExpenses = this.state.expenses.filter(expense => expense.id !== id);
-    this.setState({expenses: newExpenses});
+    const newExpenses = this.initialExpenses.filter(expense => expense.id !== id);
+    console.log(newExpenses)
   }
 
   render() {
@@ -35,7 +35,7 @@ class App extends Component {
         {/* 리스트 영역 */}
         <div style={{ width:'100%', backgroundColor : 'white', padding: '1rem'}}>
           <ExpenseList 
-            initialExpenses={this.state.expenses} 
+            initialExpenses={this.initialExpenses} 
             handleDelete={this.handleDelete}
           />
         </div>
