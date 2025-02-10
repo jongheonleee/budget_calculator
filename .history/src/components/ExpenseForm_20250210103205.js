@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { Component } from 'react'
 import './ExpenseForm.css';
 import { MdSend } from'react-icons/md';
 
 
 const ExpenseForm = () => {
-    return (
+        return (
         <form>
             <div>
                 <div className='form-center'>

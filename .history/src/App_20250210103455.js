@@ -1,31 +1,24 @@
-import { useState } from "react";
+import { Component } from "react";
 import "./App.css";
 import ExpenseForm from "./components/ExpenseForm";
 import ExpenseList from "./components/ExpenseList";
 
 const App = () => {
 
-
-  const [expenses, setExpenses] = useState([
-    { 
-      id : 1,
-      charge : '렌트비', 
-      amount : 1600
-    },
-    { 
-      id : 2, 
-      charge : '교통비', 
-      amount : 3500
-    },
-    { id : 3, 
-      charge : '식비', 
-      amount : 4500
+  constructor(props) {
+    super(props);
+    this.state = {
+      expenses: [
+        { id : 1, charge : '렌트비', amount : 1600},
+        { id : 2, charge : '교통비', amount : 3500},
+        { id : 3, charge : '식비', amount : 4500}
+      ]
     }
-  ])
+  }
 
-  const handleDelete = (id) => {
-    const newExpenses = expenses.filter(expense => expense.id !== id);
-    setExpenses(newExpenses);
+  handleDelete = (id) => {
+    const newExpenses = this.state.expenses.filter(expense => expense.id !== id);
+    this.setState({expenses: newExpenses});
   }
 
     return (
@@ -40,8 +33,8 @@ const App = () => {
         {/* 리스트 영역 */}
         <div style={{ width:'100%', backgroundColor : 'white', padding: '1rem'}}>
           <ExpenseList 
-            initialExpenses={expenses} 
-            handleDelete={handleDelete}
+            initialExpenses={this.state.expenses} 
+            handleDelete={this.handleDelete}
           />
         </div>
 

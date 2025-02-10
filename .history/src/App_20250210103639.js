@@ -23,9 +23,9 @@ const App = () => {
     }
   ])
 
-  const handleDelete = (id) => {
-    const newExpenses = expenses.filter(expense => expense.id !== id);
-    setExpenses(newExpenses);
+  handleDelete = (id) => {
+    const newExpenses = this.state.expenses.filter(expense => expense.id !== id);
+    this.setState({expenses: newExpenses});
   }
 
     return (
@@ -40,8 +40,8 @@ const App = () => {
         {/* 리스트 영역 */}
         <div style={{ width:'100%', backgroundColor : 'white', padding: '1rem'}}>
           <ExpenseList 
-            initialExpenses={expenses} 
-            handleDelete={handleDelete}
+            initialExpenses={this.state.expenses} 
+            handleDelete={this.handleDelete}
           />
         </div>
 

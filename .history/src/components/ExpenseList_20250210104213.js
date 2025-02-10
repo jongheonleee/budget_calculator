@@ -8,7 +8,7 @@ const ExpenseList = ({ handleDelete, initialExpenses }) => {
       <>
         <ul className='list'>
               {/* Expense Item */}
-              {initialExpenses.map(expense => {
+              {this.props.initialExpenses.map(expense => {
                   return (
                     <ExpenseItem 
                       expense={expense} 

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import './ExpenseList.css'
 import ExpenseItem from './ExpenseItem'
 import { MdDelete } from 'react-icons/md'
@@ -8,12 +8,12 @@ const ExpenseList = ({ handleDelete, initialExpenses }) => {
       <>
         <ul className='list'>
               {/* Expense Item */}
-              {initialExpenses.map(expense => {
+              {this.props.initialExpenses.map(expense => {
                   return (
                     <ExpenseItem 
                       expense={expense} 
                       key={expense.id}
-                      handleDelete={handleDelete} 
+                      handleDelete={this.props.handleDelete} 
                     />
                   )
               })}
