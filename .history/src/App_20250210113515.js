@@ -5,13 +5,24 @@ import ExpenseList from "./components/ExpenseList";
 
 const App = () => {
 
-  // 해당 컴포넌트에서 관리하는 데이터
-  // - getter, setter 정의 
   const [charge, setCharge] = useState("");
   const [amount, setAmount] = useState(0);
-  const [expenses, setExpenses] = useState([{ id : 1, charge : '렌트비', amount : 1600},
-                                            { id : 2, charge : '교통비', amount : 3500},
-                                            { id : 3, charge : '식비', amount : 4500}])
+  const [expenses, setExpenses] = useState([
+    { 
+      id : 1,
+      charge : '렌트비', 
+      amount : 1600
+    },
+    { 
+      id : 2, 
+      charge : '교통비', 
+      amount : 3500
+    },
+    { id : 3, 
+      charge : '식비', 
+      amount : 4500
+    }
+  ])
 
   // 지출명 핸들링 
   const handleCharge = (e) =>  {

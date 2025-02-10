@@ -5,40 +5,47 @@ import ExpenseList from "./components/ExpenseList";
 
 const App = () => {
 
-  // 해당 컴포넌트에서 관리하는 데이터
-  // - getter, setter 정의 
   const [charge, setCharge] = useState("");
   const [amount, setAmount] = useState(0);
-  const [expenses, setExpenses] = useState([{ id : 1, charge : '렌트비', amount : 1600},
-                                            { id : 2, charge : '교통비', amount : 3500},
-                                            { id : 3, charge : '식비', amount : 4500}])
+  const [expenses, setExpenses] = useState([
+    { 
+      id : 1,
+      charge : '렌트비', 
+      amount : 1600
+    },
+    { 
+      id : 2, 
+      charge : '교통비', 
+      amount : 3500
+    },
+    { id : 3, 
+      charge : '식비', 
+      amount : 4500
+    }
+  ])
 
-  // 지출명 핸들링 
   const handleCharge = (e) =>  {
     console.log(e.target.value);
     setCharge(e.target.value);
   }
 
-  // 항목 삭제 처리 
   const handleDelete = (id) => {
     const newExpenses = expenses.filter(expense => expense.id !== id);
     setExpenses(newExpenses);
   }
 
-  // 비용 핸들링 
   const handleAmount = (e) => {
     console.log(e.target.valueAsNumber);
     setAmount(e.target.valueAsNumber);
   }
 
-  // submit 핸들링 
+
   const handleSubmit = (e) => {
     // 1차적으로 화면 리프레쉬 막기
     e.preventDefault();
 
     if (!isValidInput(charge, amount)) {
-      alert(`유효하지 않은 값입니다. 입력하신 값은 charge : {}, amount : {} 입니다.`, charge, amount);
-      return;
+      alert('제대로 된 값을 입력해라인마');
     }
 
     // 새로운 항목 추가 
@@ -52,7 +59,6 @@ const App = () => {
     setAmount(0);
   }
 
-  // 입력값 유효성 검증 -> handleSubmit에서 활용 
   const isValidInput = (charge, amount) => {
     return charge !== null && amount > 0
   }
@@ -63,7 +69,7 @@ const App = () => {
 
         {/* 작성 영역 */}
         <div style={{ width:'100%', backgroundColor : 'white', padding: '1rem'}}>
-          <ExpenseForm  // 자식 컴포넌트에선 전달 받은 데이터를 직접적으로 변경할 수 없음. 따라서, 부모 컴포넌트에서 해당 데이터를 변경할 수 있는 함수를 전달해야함 
+          <ExpenseForm 
             handleCharge={handleCharge}
             charge={charge}
             handleAmount={handleAmount}

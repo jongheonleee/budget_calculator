@@ -5,13 +5,24 @@ import ExpenseList from "./components/ExpenseList";
 
 const App = () => {
 
-  // 해당 컴포넌트에서 관리하는 데이터
-  // - getter, setter 정의 
   const [charge, setCharge] = useState("");
   const [amount, setAmount] = useState(0);
-  const [expenses, setExpenses] = useState([{ id : 1, charge : '렌트비', amount : 1600},
-                                            { id : 2, charge : '교통비', amount : 3500},
-                                            { id : 3, charge : '식비', amount : 4500}])
+  const [expenses, setExpenses] = useState([
+    { 
+      id : 1,
+      charge : '렌트비', 
+      amount : 1600
+    },
+    { 
+      id : 2, 
+      charge : '교통비', 
+      amount : 3500
+    },
+    { id : 3, 
+      charge : '식비', 
+      amount : 4500
+    }
+  ])
 
   // 지출명 핸들링 
   const handleCharge = (e) =>  {
@@ -63,7 +74,7 @@ const App = () => {
 
         {/* 작성 영역 */}
         <div style={{ width:'100%', backgroundColor : 'white', padding: '1rem'}}>
-          <ExpenseForm  // 자식 컴포넌트에선 전달 받은 데이터를 직접적으로 변경할 수 없음. 따라서, 부모 컴포넌트에서 해당 데이터를 변경할 수 있는 함수를 전달해야함 
+          <ExpenseForm 
             handleCharge={handleCharge}
             charge={charge}
             handleAmount={handleAmount}
