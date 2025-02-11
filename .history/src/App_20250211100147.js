@@ -6,7 +6,7 @@ import Alert from "./components/Alert";
 
 const App = () => {
 
-  // 해당 컴포넌트에서 관리하는 필드값 
+  // 해당 컴포넌트에서 관리하는 데이터
   // - getter, setter 정의 
   const [charge, setCharge] = useState("");
   const [amount, setAmount] = useState(0);

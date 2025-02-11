@@ -6,7 +6,7 @@ import Alert from "./components/Alert";
 
 const App = () => {
 
-  // 해당 컴포넌트에서 관리하는 필드값 
+  // 해당 컴포넌트에서 관리하는 데이터
   // - getter, setter 정의 
   const [charge, setCharge] = useState("");
   const [amount, setAmount] = useState(0);
@@ -27,17 +27,6 @@ const App = () => {
   const handleDelete = (id) => {
     const newExpenses = expenses.filter(expense => expense.id !== id);
     setExpenses(newExpenses);
-    handleAlert({ type: 'danger', text : '아이템이 삭제되었습니다.' });
-  }
-
-  // alert 처리
-  const handleAlert = ({ type, text }) => {
-    // alert 필드 변경 
-    setAlert({ show : true, type, text });
-    // 7초후 alert 창 닫기 
-    setTimeout(() => {
-      setAlert({ show : false });
-    }, 7000);
   }
 
   // 비용 핸들링 
@@ -52,7 +41,7 @@ const App = () => {
     e.preventDefault();
 
     if (!isValidInput(charge, amount)) {
-      handleAlert({ type: 'danger', text: 'charge는 빈 값일 수 없으며 amount는 0보다 커야합니다.'});
+      alert(`유효하지 않은 값입니다. 입력하신 값은 charge : {}, amount : {} 입니다.`, charge, amount);
       return;
     }
 
@@ -65,9 +54,6 @@ const App = () => {
     // 필드 초기화 
     setCharge("");
     setAmount(0);
-
-    // 성공 alert 띄우기 
-    handleAlert({ type: 'success', text: '아이템이 생성되었습니다.' });
   }
 
   // 입력값 유효성 검증 -> handleSubmit에서 활용 

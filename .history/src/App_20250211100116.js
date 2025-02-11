@@ -6,7 +6,7 @@ import Alert from "./components/Alert";
 
 const App = () => {
 
-  // 해당 컴포넌트에서 관리하는 필드값 
+  // 해당 컴포넌트에서 관리하는 데이터
   // - getter, setter 정의 
   const [charge, setCharge] = useState("");
   const [amount, setAmount] = useState(0);
@@ -27,7 +27,6 @@ const App = () => {
   const handleDelete = (id) => {
     const newExpenses = expenses.filter(expense => expense.id !== id);
     setExpenses(newExpenses);
-    handleAlert({ type: 'danger', text : '아이템이 삭제되었습니다.' });
   }
 
   // alert 처리
