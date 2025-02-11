@@ -132,10 +132,9 @@ const App = () => {
         {/* 리스트 영역 */}
         <div style={{ width:'100%', backgroundColor : 'white', padding: '1rem'}}>
           <ExpenseList 
-            expenses={expenses} 
+            initialExpenses={expenses} 
             handleDelete={handleDelete}
             handleEdit={handleEdit}
-            clearItems={clearItems}
           />
         </div>
 
