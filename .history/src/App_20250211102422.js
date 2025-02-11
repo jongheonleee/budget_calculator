@@ -71,6 +71,7 @@ const App = () => {
       // 수정 성공 alert 띄우기 
       handleAlert({ type : 'success', 'text' : '아이템이 수정되었습니다.'});
 
+
     } else { // 항목 추가 할 경우
       // 새로운 항목 추가 
       const newExpense = { id : crypto.randomUUID(), charge, amount };

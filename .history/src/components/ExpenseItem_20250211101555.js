@@ -13,12 +13,8 @@ const ExpenseItem = ({ expense, handleDelete, handleEdit }) => {
         <div>
           <button 
             className='edit-btn'
-            onClick={() => 
-              handleEdit(expense.id)
-            }
-          >
-            <MdEdit/>
-          </button>
+            onClick={handleEdit}
+          ><MdEdit/></button>
           <button 
             className='clear-btn'
             onClick={() =>

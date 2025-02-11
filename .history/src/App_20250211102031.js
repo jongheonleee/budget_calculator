@@ -58,34 +58,18 @@ const App = () => {
       return;
     }
 
-    if (edit) { // 항목 수정 할 경우
-      // 수정 요소 고려해서 새로운 expenses 생성 
-      const newExpenses = expenses.map(item => {
-        return item.id === id ? {...item, charge, amount} : item
-      })
-      setExpenses(newExpenses);
+    // 새로운 항목 추가 
+    const newExpense = { id : crypto.randomUUID(), charge, amount };
+    // 새로운 expenses 생성 -> 불변성 지키기
+    const newExpenses = [...expenses, newExpense];
+    setExpenses(newExpenses);
 
-      // 필드 변경 
-      setEdit(false);
+    // 필드 초기화 
+    setCharge("");
+    setAmount(0);
 
-      // 수정 성공 alert 띄우기 
-      handleAlert({ type : 'success', 'text' : '아이템이 수정되었습니다.'});
-
-    } else { // 항목 추가 할 경우
-      // 새로운 항목 추가 
-      const newExpense = { id : crypto.randomUUID(), charge, amount };
-      // 새로운 expenses 생성 -> 불변성 지키기
-      const newExpenses = [...expenses, newExpense];
-      setExpenses(newExpenses);
-
-      // 필드 초기화 
-      setCharge("");
-      setAmount(0);
-
-      // 성공 alert 띄우기 
-      handleAlert({ type: 'success', text: '아이템이 생성되었습니다.' });
-    
-    }
+    // 성공 alert 띄우기 
+    handleAlert({ type: 'success', text: '아이템이 생성되었습니다.' });
   }
 
   // 입력값 유효성 검증 -> handleSubmit에서 활용 
@@ -99,7 +83,7 @@ const App = () => {
     const expense = expenses.find(item => item.id === id);
     // 분해 할당 
     const { charge, amount } = expense;
-
+    
     // 필드값 변경 
     setId(id);
     setCharge(charge);

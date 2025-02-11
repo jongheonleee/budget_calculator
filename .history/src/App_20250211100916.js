@@ -8,7 +8,6 @@ const App = () => {
 
   // 해당 컴포넌트에서 관리하는 필드값 
   // - getter, setter 정의 
-  const [id, setId] = useState('');
   const [charge, setCharge] = useState("");
   const [amount, setAmount] = useState(0);
   const [expenses, setExpenses] = useState([{ id : 1, charge : '렌트비', amount : 1600},
@@ -16,7 +15,7 @@ const App = () => {
                                             { id : 3, charge : '식비', amount : 4500}])
 
   const [alert, setAlert] = useState({ show : false });
-  const [edit, setEdit] = useState(false);
+
 
   // 지출명 핸들링 
   const handleCharge = (e) =>  {
@@ -58,53 +57,23 @@ const App = () => {
       return;
     }
 
-    if (edit) { // 항목 수정 할 경우
-      // 수정 요소 고려해서 새로운 expenses 생성 
-      const newExpenses = expenses.map(item => {
-        return item.id === id ? {...item, charge, amount} : item
-      })
-      setExpenses(newExpenses);
+    // 새로운 항목 추가 
+    const newExpense = { id : crypto.randomUUID(), charge, amount };
+    // 새로운 expenses 생성 -> 불변성 지키기
+    const newExpenses = [...expenses, newExpense];
+    setExpenses(newExpenses);
 
-      // 필드 변경 
-      setEdit(false);
+    // 필드 초기화 
+    setCharge("");
+    setAmount(0);
 
-      // 수정 성공 alert 띄우기 
-      handleAlert({ type : 'success', 'text' : '아이템이 수정되었습니다.'});
-
-    } else { // 항목 추가 할 경우
-      // 새로운 항목 추가 
-      const newExpense = { id : crypto.randomUUID(), charge, amount };
-      // 새로운 expenses 생성 -> 불변성 지키기
-      const newExpenses = [...expenses, newExpense];
-      setExpenses(newExpenses);
-
-      // 필드 초기화 
-      setCharge("");
-      setAmount(0);
-
-      // 성공 alert 띄우기 
-      handleAlert({ type: 'success', text: '아이템이 생성되었습니다.' });
-    
-    }
+    // 성공 alert 띄우기 
+    handleAlert({ type: 'success', text: '아이템이 생성되었습니다.' });
   }
 
   // 입력값 유효성 검증 -> handleSubmit에서 활용 
   const isValidInput = (charge, amount) => {
     return charge !== null && amount > 0
-  }
-
-  // 수정 처리 핸들링 
-  const handleEdit = (id) => {
-    // 선택된 요소 찾기 
-    const expense = expenses.find(item => item.id === id);
-    // 분해 할당 
-    const { charge, amount } = expense;
-
-    // 필드값 변경 
-    setId(id);
-    setCharge(charge);
-    setAmount(amount);
-    setEdit(true);
   }
 
     return (
@@ -120,7 +89,6 @@ const App = () => {
             handleAmount={handleAmount}
             amount={amount}
             handleSubmit={handleSubmit}
-            edit={edit}
           />
         </div>
 
@@ -129,15 +97,13 @@ const App = () => {
           <ExpenseList 
             initialExpenses={expenses} 
             handleDelete={handleDelete}
-            handleEdit={handleEdit}
           />
         </div>
 
         <div style={{ display : 'flex', justifyContent: 'end', marginTop: '1rem'}}>
           <p style={{ fontSize : '2rem'}}>
-            총지출 : 
+            총지출율 : 
             <span>
-              {/* 총 지출 계산 -> reduce(), 0은 초기값을 의미 */}
               {expenses.reduce((acc, curr) => {
                 return (acc + curr.amount);
               }, 0)}
